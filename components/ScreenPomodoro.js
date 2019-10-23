@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Button, StyleSheet } from "react-native";
+import { Text, Image, View, Button, StyleSheet } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { AppContext } from "../AppContext";
 import { PauseButton, Count } from "./Controls";
@@ -68,8 +68,8 @@ export default class ScreenPomodoro extends React.Component {
     setInterval(this.decrementCount, 1000);
   }
 
-  componentDidUpdate(){
-    if (this.context.isResetNeeded === true){
+  componentDidUpdate() {
+    if (this.context.isResetNeeded === true) {
       this.resetCount()
       this.context.toggleResetNeeded()
     }
@@ -77,8 +77,28 @@ export default class ScreenPomodoro extends React.Component {
   render() {
     return (
       <View style={styles.appContainer}>
-        <Text style={styles.titleText}>Pomodoro Timer</Text>
-        <Text style={styles.modeText}> Current mode : {this.context.mode}</Text>
+        {(this.context.mode === "Work") && (
+          <Image
+            style={{ width: 250, height: 250, marginTop: 20 }}
+            source={require('../assets/work.png')}
+          />
+        )}
+
+        {(this.context.mode === "Rest") && (
+          <Image
+            style={{ width: 250, height: 250, marginTop: 20 }}
+            source={require('../assets/rest.png')}
+          />
+        )}
+
+        {(this.context.mode === "Work") && (
+          <Text style={styles.modeText}>Lets get some work done!</Text>
+        )}
+
+        {(this.context.mode === "Rest") && (
+          <Text style={styles.modeText}>It's time to take a break</Text>
+        )}
+
         <Count
           count={this.secondsToTimeString(this.state.count)}
           isPaused={this.state.isPaused}
@@ -99,7 +119,7 @@ export default class ScreenPomodoro extends React.Component {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    backgroundColor: "#222222",
+    backgroundColor: "#ff9c5a",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -108,12 +128,8 @@ const styles = StyleSheet.create({
     color: "white",
   },
   modeText: {
-    fontSize: 16,
-    color: "white",
-  },
-  count: {
-    fontSize: 48,
-    color: "white",
+    fontSize: 24,
+    color: "black",
   },
   row: {
     flexDirection: "row",

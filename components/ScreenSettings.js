@@ -87,6 +87,7 @@ export default class ScreenSettings extends React.Component {
             title="Save"
             onPress={this.save}
             disabled={!this.state.isValid}
+            color="#00096B"
           />
         </View>
       </View>
@@ -97,21 +98,13 @@ export default class ScreenSettings extends React.Component {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    backgroundColor: "#222222",
+    backgroundColor: "#FF5A5A",
     alignItems: "center",
     justifyContent: "center",
   },
   titleText: {
     fontSize: 24,
-    color: "white",
-  },
-  modeText: {
-    fontSize: 16,
-    color: "white",
-  },
-  count: {
-    fontSize: 48,
-    color: "white",
+    color: "black",
   },
   row: {
     flexDirection: "row",
@@ -119,6 +112,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   input: {
+    borderWidth: 1,
+    borderColor: 'black',
     backgroundColor: "white",
     minWidth: 100,
     marginHorizontal: 20,

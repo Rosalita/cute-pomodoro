@@ -5,7 +5,7 @@ export class PauseButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "stop",
+      text: "pause",
       color: "#9c0000",
     };
   }
@@ -22,7 +22,7 @@ export class PauseButton extends React.Component {
 
   onPress = () => {
     if (this.state.text === "start") {
-      this.setState(() => ({ text: "stop" }));
+      this.setState(() => ({ text: "pause" }));
       this.setState(() => ({ color: "#9c0000" }));
     } else {
       this.setState(() => ({ text: "start" }));
@@ -39,34 +39,8 @@ export class Count extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  appContainer: {
-    flex: 1,
-    backgroundColor: "#222222",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  titleText: {
-    fontSize: 24,
-    color: "white",
-  },
-  modeText: {
-    fontSize: 16,
-    color: "white",
-  },
   count: {
     fontSize: 48,
-    color: "white",
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 15,
-  },
-  input: {
-    backgroundColor: "white",
-    minWidth: 100,
-    marginHorizontal: 20,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-  },
+    color: "black",
+  }
 });
