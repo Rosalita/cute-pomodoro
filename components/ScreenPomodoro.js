@@ -17,7 +17,7 @@ export default class ScreenPomodoro extends React.Component {
 
     this.state = {
       count: 1500,
-      isPaused: false,
+      isPaused: true,
     };
   }
 

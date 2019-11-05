@@ -5,8 +5,8 @@ export class PauseButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "pause",
-      color: "#9c0000",
+      text: "start",
+      color: "#004a00",
     };
   }
 
