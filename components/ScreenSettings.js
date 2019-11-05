@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View, Button } from "react-native";
+import { Image, StyleSheet, Text, TextInput, View, Button } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { AppContext } from "../AppContext";
 
@@ -60,6 +60,10 @@ export default class ScreenSettings extends React.Component {
   render() {
     return (
       <View style={styles.appContainer}>
+        <Image
+            style={{ width: 250, height: 250, marginTop: 20 }}
+            source={require('../assets/settings.png')}
+          />
         <Text style={styles.titleText}>Settings</Text>
         <View style={styles.row}>
           <Text style={styles.titleText}>Work Seconds</Text>
