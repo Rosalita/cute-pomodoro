@@ -1,5 +1,6 @@
 import React from "react";
 import vibrate from "./utils/vibrate";
+import { Audio } from 'expo-av';
 
 export const AppContext = React.createContext(null);
 
@@ -11,7 +12,18 @@ export default class AppProvider extends React.Component {
     isResetNeeded: false,
   };
 
+  playSound = async () => {
+    const soundObject = new Audio.Sound();
+    try {
+      await soundObject.loadAsync(require('./assets/time_up.mp3'));
+      await soundObject.playAsync();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   toggleMode = () => {
+    this.playSound()
     vibrate();
     if (this.state.mode === "Work") {
       this.setState(() => ({ mode: "Rest" }));
