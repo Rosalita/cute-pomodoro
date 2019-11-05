@@ -20,12 +20,12 @@ export default class AppProvider extends React.Component {
     }
   };
 
-  updateWorkSecs = (secs) => {
-    this.setState({ workSecs: secs });
+  updateWorkSecs = (mins) => {
+    this.setState({ workSecs: mins * 60 });
   };
 
-  updateRestSecs = (secs) => {
-    this.setState({ restSecs: secs });
+  updateRestSecs = (mins) => {
+    this.setState({ restSecs: mins * 60 });
   };
 
   toggleResetNeeded = () => {

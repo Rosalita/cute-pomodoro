@@ -12,8 +12,8 @@ export default class ScreenSettings extends React.Component {
   };
 
   state = {
-    textInputWorkSecs : this.context.workSecs,
-    textInputRestSecs : this.context.restSecs,
+    textInputWorkMins: null,
+    textInputRestMins: null,
     isValid: false,
   };
 
@@ -23,8 +23,8 @@ export default class ScreenSettings extends React.Component {
 
   validate = () => {
     if (
-      this.isNumber(this.state.textInputWorkSecs) &&
-      this.isNumber(this.state.textInputRestSecs) 
+      this.isNumber(this.state.textInputWorkMins) &&
+      this.isNumber(this.state.textInputRestMins)
     ) {
       this.setState({ isValid: true })
     } else {
@@ -32,28 +32,27 @@ export default class ScreenSettings extends React.Component {
     }
   }
 
-  updateTextInputWorkSecs = (secs) => {
-    if (secs > 0){
-      this.setState({textInputWorkSecs: secs});
-    }
-  }
-
-  updateTextInputRestSecs = (secs) => {
-    if (secs > 0){
-      this.setState({textInputRestSecs: secs});
-    }
-  }
-
-
   componentDidMount() {
-    this.setState({textInputWorkSecs: this.context.workSecs})
-    this.setState({textInputRestSecs: this.context.restSecs})
+    this.setState({ textInputWorkMins: this.context.workSecs / 60 })
+    this.setState({ textInputRestMins: this.context.restSecs / 60 })
     this.validate()
+  }
+  
+  updateWorkTextInput = (mins) => {
+    if (mins >= 0) {
+      this.setState({ textInputWorkMins: mins });
+    }
+  }
+
+  updateRestTextInput = (mins) => {
+    if (mins >= 0) {
+      this.setState({ textInputRestMins: mins });
+    }
   }
 
   save = () => {
-    this.context.updateWorkSecs(Number(this.state.textInputWorkSecs))
-    this.context.updateRestSecs(Number(this.state.textInputRestSecs))
+    this.context.updateWorkSecs(Number(this.state.textInputWorkMins))
+    this.context.updateRestSecs(Number(this.state.textInputRestMins))
     this.context.toggleResetNeeded()
   }
 
@@ -61,27 +60,27 @@ export default class ScreenSettings extends React.Component {
     return (
       <View style={styles.appContainer}>
         <Image
-            style={{ width: 250, height: 250, marginTop: 20 }}
-            source={require('../assets/settings.png')}
-          />
+          style={{ width: 250, height: 250, marginTop: 20 }}
+          source={require('../assets/settings.png')}
+        />
         <Text style={styles.titleText}>Settings</Text>
         <View style={styles.row}>
-          <Text style={styles.titleText}>Work Seconds</Text>
+          <Text style={styles.titleText}>Work Minutes</Text>
           <TextInput
             style={styles.input}
-            value={`${this.state.textInputWorkSecs}`}
-            onChangeText={(secs) => this.updateTextInputWorkSecs(Number(secs))}
-            placeholder="Seconds"
+            value={`${this.state.textInputWorkMins}`}
+            onChangeText={(mins) => this.updateWorkTextInput(Number(mins))}
+            placeholder="Minutes"
             keyboardType="numeric"
           />
         </View>
         <View style={styles.row}>
-          <Text style={styles.titleText}>Rest Seconds</Text>
+          <Text style={styles.titleText}>Rest Minutes</Text>
           <TextInput
             style={styles.input}
-            value={`${this.state.textInputRestSecs}`}
-            onChangeText={(secs) => this.updateTextInputRestSecs(Number(secs))}
-            placeholder="Seconds"
+            value={`${this.state.textInputRestMins}`}
+            onChangeText={(mins) => this.updateRestTextInput(Number(mins))}
+            placeholder="Minutes"
             keyboardType="numeric"
           />
         </View>
