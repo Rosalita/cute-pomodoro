@@ -29,7 +29,7 @@ export default class ScreenPomodoro extends React.Component {
     if (this.state.isPaused === false) {
       this.setState((prevState) => ({ count: prevState.count - 1 }));
     }
-    if (this.state.count === 0) {
+    if (this.state.count <= 0) {
       this.context.toggleMode();
       if (this.context.mode === "Work") {
         this.setState({ count: this.context.workSecs });

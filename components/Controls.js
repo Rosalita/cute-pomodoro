@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Button, StyleSheet } from "react-native";
+import { Button, StyleSheet, Text } from "react-native";
 
 export class PauseButton extends React.Component {
   constructor(props) {
