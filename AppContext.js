@@ -10,6 +10,8 @@ export default class AppProvider extends React.Component {
     workSecs: 1500,
     restSecs: 300,
     isResetNeeded: false,
+    isSoundEnabled: true,
+    isVibrateEnabled: true,
   };
 
   playSound = async () => {
@@ -23,8 +25,12 @@ export default class AppProvider extends React.Component {
   }
 
   toggleMode = () => {
-    this.playSound()
-    vibrate();
+    if (this.state.isSoundEnabled === true){
+      this.playSound()
+    }
+    if (this.state.isVibrateEnabled == true){
+      vibrate();
+    }
     if (this.state.mode === "Work") {
       this.setState(() => ({ mode: "Rest" }));
     } else {
@@ -44,6 +50,14 @@ export default class AppProvider extends React.Component {
     this.setState((prevState) => ({ isResetNeeded: !prevState.isResetNeeded }));
   };
 
+  toggleSoundEnabled = () => {
+    this.setState((prevState) => ({ isSoundEnabled: !prevState.isSoundEnabled}));
+  }
+
+  toggleVibrateEnabled = () => {
+    this.setState((prevState) => ({ isVibrateEnabled: !prevState.isVibrateEnabled}));
+  }
+
   render() {
     return (
       <AppContext.Provider
@@ -53,6 +67,8 @@ export default class AppProvider extends React.Component {
           updateWorkSecs: this.updateWorkSecs,
           updateRestSecs: this.updateRestSecs,
           toggleResetNeeded: this.toggleResetNeeded,
+          toggleSoundEnabled: this.toggleSoundEnabled,
+          toggleVibrateEnabled: this.toggleVibrateEnabled,
         }}
       >
         {this.props.children}

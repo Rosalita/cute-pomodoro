@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, Text, TextInput, View, Button } from "react-native";
+import { Button, Image, StyleSheet, Switch, Text, TextInput, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { AppContext } from "../AppContext";
 
@@ -37,7 +37,7 @@ export default class ScreenSettings extends React.Component {
     this.setState({ textInputRestMins: this.context.restSecs / 60 })
     this.validate()
   }
-  
+
   updateWorkTextInput = (mins) => {
     if (mins >= 0) {
       this.setState({ textInputWorkMins: mins });
@@ -65,22 +65,20 @@ export default class ScreenSettings extends React.Component {
         />
         <Text style={styles.titleText}>Settings</Text>
         <View style={styles.row}>
-          <Text style={styles.titleText}>Work Minutes</Text>
+          <Text style={styles.settingText}>Work Minutes</Text>
           <TextInput
             style={styles.input}
             value={`${this.state.textInputWorkMins}`}
             onChangeText={(mins) => this.updateWorkTextInput(Number(mins))}
-            placeholder="Minutes"
             keyboardType="numeric"
           />
         </View>
         <View style={styles.row}>
-          <Text style={styles.titleText}>Rest Minutes</Text>
+          <Text style={styles.settingText}>Rest Minutes</Text>
           <TextInput
             style={styles.input}
             value={`${this.state.textInputRestMins}`}
             onChangeText={(mins) => this.updateRestTextInput(Number(mins))}
-            placeholder="Minutes"
             keyboardType="numeric"
           />
         </View>
@@ -92,6 +90,26 @@ export default class ScreenSettings extends React.Component {
             disabled={!this.state.isValid}
             color="#00096B"
           />
+        </View>
+
+        <Text style={styles.settingText}>Sound</Text>
+        <View style={styles.switchRow}>
+          <Text>Off</Text>
+          <Switch
+            value={this.context.isSoundEnabled}
+            onValueChange={this.context.toggleSoundEnabled}
+          />
+          <Text>On</Text>
+        </View>
+
+        <Text style={styles.settingText}>Vibration</Text>
+        <View style={styles.switchRow}>
+          <Text>Off</Text>
+          <Switch
+            value={this.context.isVibrateEnabled}
+            onValueChange={this.context.toggleVibrateEnabled}
+          />
+          <Text>On</Text>
         </View>
       </View>
     );
@@ -108,12 +126,23 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 24,
     color: "black",
+    marginBottom: 15,
+  },
+  settingText: {
+    fontSize: 18,
+    color: "black",
   },
   row: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 15,
+    marginBottom: 15,
   },
+  switchRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 5,
+  },
+  
   input: {
     borderWidth: 1,
     borderColor: 'black',
