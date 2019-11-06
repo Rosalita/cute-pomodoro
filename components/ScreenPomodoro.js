@@ -26,15 +26,16 @@ export default class ScreenPomodoro extends React.Component {
   };
 
   decrementCount = () => {
-    if (this.state.isPaused === false) {
+    if (this.state.isPaused !== true) {
       this.setState((prevState) => ({ count: prevState.count - 1 }));
-    }
-    if (this.state.count <= 0) {
-      this.context.toggleMode();
-      if (this.context.mode === "Work") {
-        this.setState({ count: this.context.workSecs });
-      } else {
-        this.setState({ count: this.context.restSecs });
+
+      if (this.state.count <= 0) {
+        this.context.toggleMode();
+        if (this.context.mode === "Work") {
+          this.setState({ count: this.context.workSecs });
+        } else {
+          this.setState({ count: this.context.restSecs });
+        }
       }
     }
   };
