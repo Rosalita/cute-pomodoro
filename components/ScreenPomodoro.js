@@ -80,14 +80,14 @@ export default class ScreenPomodoro extends React.Component {
         {(this.context.mode === "Work") && (
           <Image
             style={{ width: 250, height: 250, marginTop: 20 }}
-            source={require('../assets/work.png')}
+            source={require('../assets/images/work.png')}
           />
         )}
 
         {(this.context.mode === "Rest") && (
           <Image
             style={{ width: 250, height: 250, marginTop: 20 }}
-            source={require('../assets/rest.png')}
+            source={require('../assets/images/rest.png')}
           />
         )}
 

@@ -15,7 +15,7 @@ export default class AppProvider extends React.Component {
   playSound = async () => {
     const soundObject = new Audio.Sound();
     try {
-      await soundObject.loadAsync(require('./assets/time_up.mp3'));
+      await soundObject.loadAsync(require('./assets/sounds/time_up.mp3'));
       await soundObject.playAsync();
     } catch (error) {
       console.log(error)

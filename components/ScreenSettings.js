@@ -61,7 +61,7 @@ export default class ScreenSettings extends React.Component {
       <View style={styles.appContainer}>
         <Image
           style={{ width: 250, height: 250, marginTop: 20 }}
-          source={require('../assets/settings.png')}
+          source={require('../assets/images/settings.png')}
         />
         <Text style={styles.titleText}>Settings</Text>
         <View style={styles.row}>
